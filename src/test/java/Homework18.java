@@ -3,29 +3,19 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class Homework18 extends BaseTest {
 
+public class Homework18 extends BaseTest{
     @Test
-    public void playSong() throws InterruptedException {
+    public void playSong (){
         provideEmail("demo@class.com");
         providePassword("te$t$tudent");
         clickSubmitBtn();
+        //make sure that login
+        WebElement avatarIcon = driver.findElement(By.xpath("//img[contains(@alt,'Avatar of')]"));
+        Assert.assertTrue(avatarIcon.isDisplayed());
+        //play button
 
-        playASong();
-
-        WebElement visualizer = driver.findElement(By.xpath("//button[@title='Click for a marvelous visualizer!']"));
-        Assert.assertTrue(visualizer.isDisplayed());
+        WebElement playBtn = driver.findElement(By.xpath("//i[@data-testid=\"play-next-btn\"]"));
+        playBtn.click();
     }
-
-    private void playASong() throws InterruptedException {
-
-        WebElement nextBtn = driver.findElement(By.xpath("//i[@data-testid='play-next-btn']"));
-        nextBtn.click();
-        Thread.sleep(2000);
-        WebElement playPauseBtn = driver.findElement(By.xpath("//span[@data-testid='play-btn']"));
-        playPauseBtn.click();
-
-    }
-
-
 }
